@@ -1,0 +1,75 @@
+body{
+	font-family: 'Dosis', sans-serif;
+	background: black;
+}
+.lock {
+	width: 500px;
+	height: 300px;
+	background-color: #bbb;
+	margin: 100 auto;
+	border-radius: 150px;
+}
+.lockedtxt {
+	float: left;
+	font-size: 18pt; 
+	margin-left: 81px;
+	margin-top: 50px; 
+}
+.lockedtxt2 {
+	font-size: 18pt; 
+	margin-left: 580px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: #eee; 
+}
+.lockedtxt3 {
+	font-size: 18pt; 
+	margin-left: 0cm;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color: black; 
+}
+.plocked {
+	float: left;
+	padding-left: 40px;
+	padding-right: 35px;
+	margin-top: 0px;
+	margin-bottom: 27px;
+}
+.lockb {
+	padding: 4px 20px 5px 20px;
+	margin-left: 211px; 
+	border-radius: 20px;
+	background-color: green;
+	text-decoration: none;
+	color: #fff;
+}
+.video{
+	height: 580px;
+	width: 880px;
+	margin-left: 50px;
+	background-color: none;
+	float:left;
+}
+.wrapper{
+	height: 580px;
+	width: 1300px;
+	overflow: hidden;
+}
+.chat {
+	height:580px;
+	width:300px;
+	margin-left: 20px;
+	background-color: #eee;
+	float:left;
+}
+#chatarea{
+	height:500px; 
+	width:300px;
+	background-color: yellow;
+}
+#sendarea{
+	height:52px;
+	width:300px;
+	background-color: green;
+}

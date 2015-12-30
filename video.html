@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>Luk's Cute Website.</title>
+	<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+	<script src="../yAAY/jquery-1.11.3.min.js"></script>
+	<script src="../yAAY/socket.io.js"></script>
+	<script>
+	window.onload = function(){
+		socket = io("http://127.0.0.1:8080");
+		var html5video = document.getElementById('html5video');
+		var PlayChangedFromServer = false;
+		var PauseChangedFromServer = false;
+		var timeChangedFromServer = false;
+
+		html5video.addEventListener('play', function(){
+			if (PlayChangedFromServer){
+				PlayChangedFromServer = false;
+				return;
+			};
+			socket.emit('video.play');
+			console.log("sent video.play");
+		});
+		socket.on('video.play.io', function(){
+			PlayChangedFromServer = true;
+			document.getElementById('html5video').play();
+			console.log("recieved video.play.io");
+		});
+
+		html5video.addEventListener('pause', function(){
+			if (PauseChangedFromServer){
+				PauseChangedFromServer = false;
+				return;
+			};
+			socket.emit("video.pause");
+			console.log("sent video.pause")
+		});
+		socket.on('video.pause.io', function(){
+			PauseChangedFromServer = true;
+			document.getElementById('html5video').pause();
+			console.log("recieved video.pause.io");
+		});
+
+		html5video.addEventListener('seeking', function(){
+			if (timeChangedFromServer) {
+		        timeChangedFromServer = false;
+		        return;
+		    }
+			var time = html5video.currentTime;
+			console.log(time);
+			socket.emit("video.seeking",{time: time});
+		});
+		socket.on('video.seeking.io', function(parameters){
+			timeChangedFromServer = true;
+			var time = parameters.time;
+			document.getElementById('html5video').currentTime = time;
+		});
+	};
+	</script>
+</head>
+<body>
+	<h2 class="lockedtxt2">he lovez ey. wetch dis interestilar thing wit im.</h2>
+	<div class="wrapper">
+		<div class="chat">
+			<h2 class="lockedtxt3">ye'r ready. shw sum luv...</h2>
+			<div id="chatarea">
+
+			</div>
+			<div id="sendarea">
+
+			</div>
+		</div>
+		<div class="video">
+			<video id="html5video" height="580" width="900" controls>
+				<source src="video.webm" type="video/webm">
+				its stupid brewser. use someteing else.	
+			</video>
+		</div>
+	</div>
+</body>
+</html>
